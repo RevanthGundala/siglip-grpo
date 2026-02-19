@@ -1,0 +1,38 @@
+# Virtual environments
+.venv*/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Results & outputs
+results/
+*.mp4
+*.avi
+
+# LIBERO config
+.libero/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Misc
+*.log
+wandb/
+
+# Internal research docs (not for public release)
+docs/research.md
+docs/experiment_log.md
+
+vendor/

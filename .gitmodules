@@ -1,0 +1,6 @@
+[submodule "vendor/LIBERO"]
+	path = vendor/LIBERO
+	url = https://github.com/Lifelong-Robot-Learning/LIBERO.git
+[submodule "vendor/LIBERO-plus"]
+	path = vendor/LIBERO-plus
+	url = https://github.com/sylvestf/LIBERO-plus.git

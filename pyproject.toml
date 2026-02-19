@@ -1,0 +1,42 @@
+[project]
+name = "vla-coach"
+version = "0.1.0"
+description = "Self-referential RL for Vision-Language-Action models using SigLIP-T rewards"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.22.4",
+    "pyyaml>=6.0",
+    "easydict>=1.9",
+    "torch>=2.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "pytest",
+]
+modal = [
+    "modal",
+]
+rl = [
+    "transformers>=4.37.0",
+    "accelerate>=0.25.0",
+    "bitsandbytes>=0.41.0",
+    "peft>=0.7.0",
+    "pillow>=10.0",
+    "opencv-python>=4.8.0",
+    "scipy>=1.11.0",
+    "einops>=0.7.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/vla_coach"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100

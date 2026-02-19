@@ -1,0 +1,47 @@
+# SigLIP-T RL Training Configuration
+# Usage: python -m vla_coach.train_rl --config configs/train_rl.yaml
+#   or:  modal run src/vla_coach/train_rl_modal.py --config configs/train_rl.yaml
+
+# --- VLA Model ---
+model_name: "Sylvest/OpenVLA-AC-PD-1traj-libero-spatial"
+load_in_4bit: false
+embed_dim: 1152  # SigLIP ViT-SO400M embedding dimension
+use_center_crop: true    # Model trained with random crop augmentation
+
+# --- LoRA / QLoRA ---
+lora_r: 16
+lora_alpha: 32
+lora_targets: ["q_proj", "v_proj"]
+lora_dropout: 0.05
+
+# --- SigLIP-T Reward ---
+use_temporal: true    # true = SigLIP-T (with temporal MLP), false = SigLIP-only ablation
+freq_channels: 256    # sinusoidal encoding dimension (matches GR00T)
+last_k_frames: 20     # pool only last K frames for reward (0 = all frames; diagnostic shows last-10/20 gives 3.8× more spread)
+
+# --- LIBERO Benchmark ---
+benchmark: "libero_spatial"  # libero_spatial, libero_object, libero_goal, libero_10
+n_tasks: 10                  # number of tasks to train on (max varies by suite)
+task_order_index: 0
+
+# --- Rollout Collection ---
+rollouts_per_task: 8     # trajectories per task per iteration
+max_steps: 220           # max steps per episode (official: 220 for libero_spatial)
+img_h: 256
+img_w: 256
+
+# --- GRPO Hyperparameters ---
+n_iterations: 3          # self-improvement iterations
+lr: 1.0e-5
+weight_decay: 0.01
+grpo:
+  clip_epsilon: 0.2      # PPO clipping
+  kl_coeff: 0.01         # KL penalty toward reference policy
+  gamma: 0.99            # discount factor
+  max_grad_norm: 1.0     # gradient clipping
+
+# --- Output ---
+checkpoint_dir: "results/siglip_t/checkpoints"
+save_videos: false
+video_dir: "results/siglip_t/videos"
+seed: 42
