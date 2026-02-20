@@ -1,4 +1,4 @@
-# VLA-Coach: Self-Referential RL for Vision-Language-Action Models
+# SigLIP-GRPO: Trying to Make a VLA Its Own Reward Model
 
 > *Can a VLA be its own reward model?* We replace SRPO's 1.1B-parameter V-JEPA world model with the VLA's own SigLIP encoder augmented by a lightweight temporal MLP (~200K params), achieving self-improvement at zero extra VRAM cost.
 
@@ -36,7 +36,7 @@ Frame t ──→ SigLIP ViT-SO400M ──→ (1152-dim) ──+──→ Mean P
 Requires [uv](https://docs.astral.sh/uv/) and Python ≥ 3.10.
 
 ```bash
-git clone --recurse-submodules https://github.com/<your-org>/siglip-grpo.git
+git clone --recurse-submodules https://github.com/revanthgundala/siglip-grpo.git
 cd siglip-grpo
 pip install -e ".[rl]"
 ```
@@ -82,11 +82,11 @@ siglip-grpo/
 ## Citation
 
 ```bibtex
-@misc{vlacoach2025,
-  title   = {VLA-Coach: Self-Referential Reinforcement Learning for Vision-Language-Action Models},
-  author  = {<authors>},
+@misc{siglipgrpo2025,
+  title   = {Trying to Make a VLA Its Own Reward Model},
+  author  = {Gundala, Revanth},
   year    = {2025},
-  url     = {https://github.com/<your-org>/siglip-grpo}
+  url     = {https://github.com/revanthgundala/siglip-grpo}
 }
 ```
 
