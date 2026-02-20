@@ -11,10 +11,10 @@ import numpy as np
 import torch
 from PIL import Image
 
-from vla_coach.grpo import GRPOTrainer, compute_grpo_advantages, compute_token_log_probs
-from vla_coach.reward import SigLIPTReward, extract_siglip_embeddings
-from vla_coach.rollout import collect_rollouts, compute_batch_statistics
-from vla_coach.utils import load_config, setup_logging
+from siglip_grpo.grpo import GRPOTrainer, compute_grpo_advantages, compute_token_log_probs
+from siglip_grpo.reward import SigLIPTReward, extract_siglip_embeddings
+from siglip_grpo.rollout import collect_rollouts, compute_batch_statistics
+from siglip_grpo.utils import load_config, setup_logging
 
 logger = setup_logging()
 
@@ -385,14 +385,14 @@ def _load_vla(cfg: dict, device: torch.device):
     except Exception as e:
         logger.warning(f"Could not load {model_name}: {e}")
         logger.info("Falling back to MLPPolicy for development/testing")
-        from vla_coach.policy import MLPPolicy
+        from siglip_grpo.policy import MLPPolicy
         model = MLPPolicy().to(device)
         return model, None, None
 
 
 def _create_env(benchmark, task_idx: int, cfg: dict):
     """Create a LIBERO environment for a given task."""
-    from vla_coach.utils import create_env
+    from siglip_grpo.utils import create_env
     bddl_file_path = benchmark.get_task_bddl_file_path(task_idx)
     env = create_env(
         bddl_file=bddl_file_path,

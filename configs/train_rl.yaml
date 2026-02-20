@@ -1,6 +1,6 @@
 # SigLIP-T RL Training Configuration
-# Usage: python -m vla_coach.train_rl --config configs/train_rl.yaml
-#   or:  modal run src/vla_coach/train_rl_modal.py --config configs/train_rl.yaml
+# Usage: python -m siglip_grpo.train_rl --config configs/train_rl.yaml
+#   or:  modal run src/siglip_grpo/train_rl_modal.py --config configs/train_rl.yaml
 
 # --- VLA Model ---
 model_name: "Sylvest/OpenVLA-AC-PD-1traj-libero-spatial"

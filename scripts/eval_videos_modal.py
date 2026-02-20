@@ -1,21 +1,9 @@
-"""Capture demo rollout videos on Modal for blog/paper.
-
-Runs the baseline VLA (no RL checkpoint) on selected tasks and saves
-MP4 videos. Captures a mix of successes and failures across tasks with
-varying difficulty.
-
-Usage:
-    modal run scripts/eval_videos_modal.py
-    # Then download:
-    modal volume get vla-coach-rl-results siglip_t/videos/eval/ results/videos/
-"""
-
 import modal
 
 # Reuse the same image + volume from training
-from src.vla_coach.train_rl_modal import image, vol
+from src.siglip_grpo.train_rl_modal import image, vol
 
-app = modal.App("vla-coach-eval", image=image)
+app = modal.App("siglip-grpo-eval", image=image)
 
 
 @app.function(
@@ -54,7 +42,7 @@ def eval_videos_remote():
     os.makedirs(video_dir, exist_ok=True)
 
     # Load model (same as training)
-    from vla_coach.train_rl import _load_vla, _create_env, _wrap_as_policy
+    from siglip_grpo.train_rl import _load_vla, _create_env, _wrap_as_policy
     model, processor, norm_stats = _load_vla(cfg, device=device)
     log.info("VLA loaded.")
 
@@ -70,7 +58,7 @@ def eval_videos_remote():
     benchmark = get_benchmark(BENCHMARK_MAP[benchmark_name])(cfg.get("task_order_index", 0))
 
     # Run rollouts: 5 tasks × 4 episodes = 20 videos
-    from vla_coach.rollout import collect_rollouts
+    from siglip_grpo.rollout import collect_rollouts
     n_tasks = 5
     rollouts_per_task = 4
     max_steps = cfg.get("max_steps", 220)
@@ -100,7 +88,7 @@ def eval_videos_remote():
 
     # --- Compute rewards (all-frame AND last-20) for "reward is blind" figure ---
     log.info("Computing SigLIP embeddings for reward comparison...")
-    from vla_coach.reward import SigLIPTReward, extract_siglip_embeddings
+    from siglip_grpo.reward import SigLIPTReward, extract_siglip_embeddings
     import torchvision.transforms as T
     from PIL import Image
 
@@ -170,4 +158,4 @@ def main():
     result = eval_videos_remote.remote()
     print(f"\nEval complete: {result['n_success']}/{result['n_total']} successes")
     print("\nDownload videos with:")
-    print("  modal volume get vla-coach-rl-results siglip_t/videos/eval/ results/videos/")
+    print("  modal volume get siglip-grpo-rl-results siglip_t/videos/eval/ results/videos/")

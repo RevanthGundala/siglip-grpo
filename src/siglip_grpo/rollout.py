@@ -6,7 +6,7 @@ from typing import Dict, List, Optional
 import numpy as np
 import torch
 
-from vla_coach.utils import setup_logging
+from siglip_grpo.utils import setup_logging
 
 logger = setup_logging()
 

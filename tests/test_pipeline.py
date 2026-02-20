@@ -13,10 +13,10 @@ import torch
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
-from vla_coach.reward import SigLIPTReward
-from vla_coach.grpo import compute_grpo_advantages, grpo_loss, GRPOTrainer
-from vla_coach.temporal_embedding import TemporalEmbedding
-from vla_coach.rollout import Trajectory
+from siglip_grpo.reward import SigLIPTReward
+from siglip_grpo.grpo import compute_grpo_advantages, grpo_loss, GRPOTrainer
+from siglip_grpo.temporal_embedding import TemporalEmbedding
+from siglip_grpo.rollout import Trajectory
 
 
 # ---------------------------------------------------------------------------

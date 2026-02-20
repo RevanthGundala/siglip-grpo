@@ -36,25 +36,25 @@ Frame t ──→ SigLIP ViT-SO400M ──→ (1152-dim) ──+──→ Mean P
 Requires [uv](https://docs.astral.sh/uv/) and Python ≥ 3.10.
 
 ```bash
-git clone --recurse-submodules https://github.com/<your-org>/vla-coach.git
-cd vla-coach
+git clone --recurse-submodules https://github.com/<your-org>/siglip-grpo.git
+cd siglip-grpo
 pip install -e ".[rl]"
 ```
 
 ### Train locally
 
 ```bash
-PYTHONPATH=src python -m vla_coach.train_rl --config configs/train_rl.yaml
+PYTHONPATH=src python -m siglip_grpo.train_rl --config configs/train_rl.yaml
 ```
 
 ### Train on Modal (A10G GPU)
 
 ```bash
 pip install modal
-modal run src/vla_coach/train_rl_modal.py --config configs/train_rl.yaml
+modal run src/siglip_grpo/train_rl_modal.py --config configs/train_rl.yaml
 
 # SigLIP-only ablation (no temporal embedding)
-modal run src/vla_coach/train_rl_modal.py --config configs/train_rl.yaml --no-temporal
+modal run src/siglip_grpo/train_rl_modal.py --config configs/train_rl.yaml --no-temporal
 ```
 
 ### Configuration
@@ -64,8 +64,8 @@ See [`configs/train_rl.yaml`](configs/train_rl.yaml) for all hyperparameters (be
 ## Project Structure
 
 ```
-vla-coach/
-├── src/vla_coach/
+siglip-grpo/
+├── src/siglip_grpo/
 │   ├── reward.py              # SigLIP-T reward: embedding → distance → sigmoid
 │   ├── temporal_embedding.py  # GR00T-style sinusoidal + MLP (~200K params)
 │   ├── grpo.py                # GRPO trainer, PPO loss, token-level log-probs
@@ -86,7 +86,7 @@ vla-coach/
   title   = {VLA-Coach: Self-Referential Reinforcement Learning for Vision-Language-Action Models},
   author  = {<authors>},
   year    = {2025},
-  url     = {https://github.com/<your-org>/vla-coach}
+  url     = {https://github.com/<your-org>/siglip-grpo}
 }
 ```
 

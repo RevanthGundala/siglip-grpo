@@ -1,16 +1,4 @@
 #!/usr/bin/env python3
-"""Publication-quality plots for SigLIP-T results.
-
-Generates clean, minimal plots inspired by scaling-law paper style:
-- Muted color palette, whitegrid background
-- Proper axis labels and tight layouts
-- Confidence-band style where applicable
-- Separate per-task breakdown
-
-Usage:
-    python scripts/plot_publication.py results/history.json
-"""
-
 import json
 import sys
 from pathlib import Path

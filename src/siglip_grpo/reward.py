@@ -5,7 +5,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-from vla_coach.temporal_embedding import TemporalEmbedding
+from siglip_grpo.temporal_embedding import TemporalEmbedding
 
 
 class SigLIPTReward:

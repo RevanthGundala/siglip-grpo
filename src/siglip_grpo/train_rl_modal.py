@@ -65,9 +65,9 @@ image = (
     )
 )
 
-app = modal.App("vla-coach-rl", image=image)
+app = modal.App("siglip-grpo-rl", image=image)
 
-vol = modal.Volume.from_name("vla-coach-rl-results", create_if_missing=True)
+vol = modal.Volume.from_name("siglip-grpo-rl-results", create_if_missing=True)
 
 
 @app.function(
@@ -93,7 +93,7 @@ def train_rl_remote(cfg: dict):
     if cfg.get("save_videos"):
         cfg["video_dir"] = "/root/results/siglip_t/videos"
 
-    from vla_coach.train_rl import train_rl
+    from siglip_grpo.train_rl import train_rl
     history = train_rl(cfg)
 
     vol.commit()

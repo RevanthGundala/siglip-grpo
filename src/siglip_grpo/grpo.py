@@ -3,7 +3,7 @@ from typing import Dict, List, Optional, Tuple
 import torch
 import torch.nn.functional as F
 
-from vla_coach.utils import setup_logging
+from siglip_grpo.utils import setup_logging
 
 logger = setup_logging()
 
@@ -76,6 +76,7 @@ def compute_token_log_probs(
 
         n_action_tokens = ACTION_DIM * NUM_ACTIONS_CHUNK
 
+        # 29871 is an eos token
         if not torch.all(input_ids[:, -1] == 29871):
             input_ids = torch.cat(
                 (input_ids, torch.tensor([[29871]], device=device)), dim=1

@@ -23,8 +23,8 @@ def load_config(config_path: str) -> dict:
 
 
 def setup_logging(level: str = "INFO") -> logging.Logger:
-    """Configure and return a logger for vla_coach."""
-    logger = logging.getLogger("vla_coach")
+    """Configure and return a logger for siglip_grpo."""
+    logger = logging.getLogger("siglip_grpo")
     if not logger.handlers:
         handler = logging.StreamHandler(sys.stdout)
         handler.setFormatter(

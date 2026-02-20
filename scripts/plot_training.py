@@ -1,14 +1,4 @@
 #!/usr/bin/env python3
-"""Plot training curves from history.json.
-
-Usage:
-    # After downloading results from Modal volume:
-    modal volume get vla-coach-rl-results siglip_t/checkpoints/history.json results/history.json
-    python scripts/plot_training.py results/history.json
-
-    # Or point directly at a local history file:
-    python scripts/plot_training.py path/to/history.json
-"""
 
 import json
 import sys
